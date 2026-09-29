@@ -1,0 +1,205 @@
+chatbot.html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>My Chatbot</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f4f8;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+
+        .chat-container {
+            width: 350px;
+            background-color: white;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+            overflow: hidden;
+        }
+
+        .chat-header {
+            background-color: #1e3a8a;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .chat-box {
+            height: 350px;
+            padding: 15px;
+            overflow-y: auto;
+        }
+
+        .message {
+            padding: 10px;
+            margin: 8px 0;
+            border-radius: 10px;
+            max-width: 80%;
+        }
+
+        .bot {
+            background-color: #e5e7eb;
+        }
+
+        .user {
+            background-color: #bfdbfe;
+            margin-left: auto;
+            text-align: right;
+        }
+
+        .input-area {
+            display: flex;
+            border-top: 1px solid #ddd;
+        }
+
+        input {
+            flex: 1;
+            padding: 15px;
+            border: none;
+            outline: none;
+        }
+
+        button {
+            padding: 15px;
+            border: none;
+            background-color: #1e3a8a;
+            color: white;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #172554;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="chat-container">
+
+    <div class="chat-header">
+        <h2>My Chatbot 🤖</h2>
+    </div>
+
+    <div class="chat-box" id="chatBox">
+
+        <div class="message bot">
+            Hello! I'm your chatbot. How can I help you?
+        </div>
+
+    </div>
+
+    <div class="input-area">
+
+        <input
+            type="text"
+            id="userInput"
+            placeholder="Type a message..."
+        >
+
+        <button onclick="sendMessage()">
+            Send
+        </button>
+
+    </div>
+
+</div>
+
+
+<script>
+
+function sendMessage() {
+
+    let input = document.getElementById("userInput");
+    let chatBox = document.getElementById("chatBox");
+
+    let message = input.value;
+
+    if (message.trim() === "") {
+        return;
+    }
+
+    // Display user's message
+
+    let userMessage = document.createElement("div");
+
+    userMessage.className = "message user";
+
+    userMessage.textContent = message;
+
+    chatBox.appendChild(userMessage);
+
+
+    // Create bot response
+
+    let botMessage = document.createElement("div");
+
+    botMessage.className = "message bot";
+
+
+    let text = message.toLowerCase();
+
+
+    if (text.includes("hello") || text.includes("hi")) {
+
+        botMessage.textContent =
+            "Hello! Nice to meet you.";
+
+    }
+
+    else if (text.includes("name")) {
+
+        botMessage.textContent =
+            "My name is My Chatbot.";
+
+    }
+
+    else if (text.includes("html")) {
+
+        botMessage.textContent =
+            "HTML is used to create the structure of a webpage.";
+
+    }
+
+    else if (text.includes("css")) {
+
+        botMessage.textContent =
+            "CSS is used to style and design webpages.";
+
+    }
+
+    else if (text.includes("javascript")) {
+
+        botMessage.textContent =
+            "JavaScript adds behavior and interaction to websites.";
+
+    }
+
+    else {
+
+        botMessage.textContent =
+            "I'm still learning. I don't know how to answer that yet.";
+
+    }
+
+
+    chatBox.appendChild(botMessage);
+
+    input.value = "";
+
+    chatBox.scrollTop = chatBox.scrollHeight;
+}
+
+</script>
+
+</body>
+</html>
